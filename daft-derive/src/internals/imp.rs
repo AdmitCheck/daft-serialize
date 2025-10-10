@@ -326,15 +326,17 @@ fn make_diff_struct(
 
     let struct_def = match &s.fields {
         Fields::Named(_) => quote! {
+            #[derive(Serialize)]
             #non_exhaustive
             #vis struct #name #new_generics #where_clause #diff_fields
-
         },
         Fields::Unnamed(_) => quote! {
+            #[derive(Serialize)]
             #non_exhaustive
             #vis struct #name #new_generics #diff_fields #where_clause;
         },
         Fields::Unit => quote! {
+            #[derive(Serialize)]
             // This is kinda silly
             #non_exhaustive
             #vis struct #name #new_generics {} #where_clause

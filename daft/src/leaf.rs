@@ -1,12 +1,13 @@
 use crate::Diffable;
 use core::ops::{Deref, DerefMut};
+use serde::Serialize;
 
 /// A primitive or atomic change.
 ///
 /// `T` is normally a reference of some kind, but it can be any type.
 ///
 /// For more information, see the [crate-level documentation](crate).
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize)]
 pub struct Leaf<T> {
     /// The value on the before side.
     pub before: T,

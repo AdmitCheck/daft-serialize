@@ -19,6 +19,7 @@ newtype-uuid = { workspace = true, optional = true }
 oxnet = { workspace = true, optional = true }
 paste.workspace = true
 uuid = { workspace = true, optional = true, features = ["v4"] }
+serde = { version = "1.0.217", features = ["derive"] }
 
 [features]
 default = ["std"]
