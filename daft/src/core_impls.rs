@@ -16,14 +16,14 @@ leaf! { i64, i32, i16, i8, u64, u32, u16, u8, char, bool, isize, usize, NonZeroU
 leaf! { IpAddr, Ipv4Addr, Ipv6Addr, SocketAddr, SocketAddrV4, SocketAddrV6 }
 leaf! { str }
 
-impl<T> Diffable for Option<T> {
+impl<T: Default + Clone> Diffable for Option<T> {
     type Diff<'daft>
-        = Leaf<Option<&'daft T>>
+        = Leaf<T>
     where
         T: 'daft;
 
     fn diff<'daft>(&'daft self, other: &'daft Self) -> Self::Diff<'daft> {
-        Leaf { before: self.as_ref(), after: other.as_ref() }
+        Leaf { before: self.clone().unwrap_or_default(), after: other.clone().unwrap_or_default() }
     }
 }
 
