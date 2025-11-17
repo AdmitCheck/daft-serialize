@@ -4,6 +4,7 @@ use std::{
     fmt::Debug,
 };
 use uuid::Uuid;
+use serde::Serialize;
 
 #[derive(Debug, Eq, PartialEq, Diffable)]
 enum SomeEnum {
